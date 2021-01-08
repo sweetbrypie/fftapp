@@ -161,7 +161,6 @@
 				827FF150C97E0E33EC784DC0 /* Pods-fftapp-tvOSTests.debug.xcconfig */,
 				433118E6DB5E85C4D83E2AA8 /* Pods-fftapp-tvOSTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
