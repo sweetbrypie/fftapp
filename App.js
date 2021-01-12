@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
 import React from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity, Linking } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -13,11 +13,15 @@ function WelcomeScreen({ navigation }) {
       <Text style={styles.header}>Welcome to the {"\n"} Food for Thought App</Text>
       <View style={styles.row}>
         <View style={styles.iconcontainer}>
-          <Image style={styles.icon} source={require('./images/calendar.png')} />
+          <TouchableOpacity onPress={() => { navigation.navigate('EventScreen') }}>
+            <Image style={styles.icon} source={require('./images/calendar.png')} />
+          </TouchableOpacity>
           <Text style={styles.icontext}>Event Calendar</Text>
         </View>
         <View style={styles.iconcontainer}>
-          <Image style={styles.icon} source={require('./images/announcements.png')} />
+          <TouchableOpacity onPress={() => { navigation.navigate('AnnouncementsScreen') }}>
+            <Image style={styles.icon} source={require('./images/announcements.png')} />
+          </TouchableOpacity>
           <Text style={styles.icontext}>Announcements</Text>
         </View>
       </View>
@@ -29,13 +33,39 @@ function WelcomeScreen({ navigation }) {
           <Text style={styles.icontext}>About Us</Text>
         </View>
         <View style={styles.iconcontainer}>
-          <Image style={styles.icon} source={require('./images/quicklinks.png')} />
+          <TouchableOpacity onPress={() => { navigation.navigate('QuickLinksScreen') }}>
+            <Image style={styles.icon} source={require('./images/quicklinks.png')} />
+          </TouchableOpacity>
           <Text style={styles.icontext}>Quick Links</Text>
         </View>
       </View>
     </View>
   )
 };
+
+function EventScreen({ navigation }) {
+  return (
+    <View style={styles.container}>
+      <TouchableOpacity onPress={() => { navigation.navigate('WelcomeScreen') }}>
+        <Image style={styles.minilogo} source={require('./images/minibear.png')} />
+      </TouchableOpacity>
+      <Text style={styles.subheader}>Event Calendar</Text>
+      <Text style={styles.body}>filler</Text>
+    </View>
+  )
+}
+
+function AnnouncementsScreen({ navigation }) {
+  return (
+    <View style={styles.container}>
+      <TouchableOpacity onPress={() => { navigation.navigate('WelcomeScreen') }}>
+        <Image style={styles.minilogo} source={require('./images/minibear.png')} />
+      </TouchableOpacity>
+      <Text style={styles.subheader}>Announcements</Text>
+      <Text style={styles.body}>filler</Text>
+    </View>
+  )
+}
 
 function AboutUsScreen({ navigation }) {
   return (
@@ -44,7 +74,22 @@ function AboutUsScreen({ navigation }) {
         <Image style={styles.minilogo} source={require('./images/minibear.png')} />
       </TouchableOpacity>
       <Text style={styles.subheader}>About Us</Text>
-      <Text style={styles.body}>Our program began in Fall 2017 with the idea to combine life skill classes with resources. We started with only our food seminar course. Since then, our program has grown to offer more courses and resources!{"\n"}{"\n"}We have begun our own meal system, laptop rental, and textbook library for our students. Additionally, we offer all our students the chance to gain teaching experience for units after they have taken a course. Our goal is to help other students gain life skills that they can take beyond the classroom setting.</Text>
+      <Text style={styles.body}>Our program began in Fall 2017 with the idea to combine life skill classes with resources. We started with only our food seminar course. Since then, our program has grown to offer more courses and resources!
+        {"\n"}{"\n"}We have begun our own meal system, laptop rental, and textbook library for our students. Additionally, we offer all our students the chance to gain teaching experience for units after they have taken a course. Our goal is to help other students gain life skills that they can take beyond the classroom setting.
+        {"\n"}{"\n"}You can learn more by visiting us at <Text style={styles.underline} onPress={() => Linking.openURL('https://basicneeds.berkeley.edu/our-programs/food-for-thought/')}>www.bncfft.org</Text>
+      </Text>
+    </View>
+  )
+}
+
+function QuickLinksScreen({ navigation }) {
+  return (
+    <View style={styles.container}>
+      <TouchableOpacity onPress={() => { navigation.navigate('WelcomeScreen') }}>
+        <Image style={styles.minilogo} source={require('./images/minibear.png')} />
+      </TouchableOpacity>
+      <Text style={styles.subheader}>Quick Links</Text>
+      <Text style={styles.body}>We have compiled all of our most useful links about our program and resources for students to learn more about us!</Text>
     </View>
   )
 }
@@ -54,7 +99,10 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen options={{ headerShown: false }} name="WelcomeScreen" component={WelcomeScreen} />
+        <Stack.Screen options={{ headerShown: false }} name="EventScreen" component={EventScreen} />
+        <Stack.Screen options={{ headerShown: false }} name="AnnouncementsScreen" component={AnnouncementsScreen} />
         <Stack.Screen options={{ headerShown: false }} name="AboutUsScreen" component={AboutUsScreen} />
+        <Stack.Screen options={{ headerShown: false }} name="QuickLinksScreen" component={QuickLinksScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -122,5 +170,8 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'justify',
     padding: 20,
+  },
+  underline: {
+    textDecorationLine: 'underline',
   }
 });
