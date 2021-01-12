@@ -40,13 +40,11 @@ function WelcomeScreen({ navigation }) {
 function AboutUsScreen({ navigation }) {
   return (
     <View style={styles.container}>
-      <View style={styles.row}>
-        <TouchableOpacity onPress={() => { navigation.navigate('WelcomeScreen') }}>
-          <Image style={styles.backarrow} source={require('./images/backarrow.png')} />
-        </TouchableOpacity>
+      <TouchableOpacity onPress={() => { navigation.navigate('WelcomeScreen') }}>
         <Image style={styles.minilogo} source={require('./images/minibear.png')} />
-      </View>
+      </TouchableOpacity>
       <Text style={styles.subheader}>About Us</Text>
+      <Text style={styles.body}>Our program began in Fall 2017 with the idea to combine life skill classes with resources. We started with only our food seminar course. Since then, our program has grown to offer more courses and resources!{"\n"}{"\n"}We have begun our own meal system, laptop rental, and textbook library for our students. Additionally, we offer all our students the chance to gain teaching experience for units after they have taken a course. Our goal is to help other students gain life skills that they can take beyond the classroom setting.</Text>
     </View>
   )
 }
@@ -118,5 +116,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     margin: 15,
     alignItems: 'center',
+  },
+  body: {
+    color: '#FFFFFF',
+    fontSize: 20,
+    textAlign: 'justify',
+    padding: 20,
   }
 });
