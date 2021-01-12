@@ -90,6 +90,13 @@ function QuickLinksScreen({ navigation }) {
       </TouchableOpacity>
       <Text style={styles.subheader}>Quick Links</Text>
       <Text style={styles.body}>We have compiled all of our most useful links about our program and resources for students to learn more about us!</Text>
+      <Text style={styles.underline} onPress={() => Linking.openURL('https://basicneeds.berkeley.edu/our-programs/food-for-thought/')}>Program Website</Text>
+      <Text style={styles.underline} onPress={() => Linking.openURL('https://forms.gle/bQwbRAH32rme3Wr68')}>Scholarship Application</Text>
+      <Text style={styles.underline} onPress={() => Linking.openURL('https://docs.google.com/forms/d/e/1FAIpQLSeQFV6HdI-kMg-__tav516M8MfFxC5T46MhmykLQ2m5HL5-BQ/viewform')}>Anonymous Feedback Form</Text>
+      <Text style={styles.underline} onPress={() => Linking.openURL('https://calfoodforthought.us4.list-manage.com/subscribe?u=a913bff60f9f09ead338d42aa&id=6fe27feda2')}>Join our Newsletter!</Text>
+      <Text style={styles.underline} onPress={() => Linking.openURL('https://forms.gle/B3z4wAVNbC24UWLx9')}>Join our Alumni Network!</Text>
+      <Text style={styles.underline} onPress={() => Linking.openURL('https://www.facebook.com/bncfft')}>Follow us on Facebook!</Text>
+      <Text style={styles.underline} onPress={() => Linking.openURL('https://www.instagram.com/bncfft/')}>Follow us on Instagram!</Text>
     </View>
   )
 }
@@ -173,5 +180,8 @@ const styles = StyleSheet.create({
   },
   underline: {
     textDecorationLine: 'underline',
+    color: '#FFFFFF',
+    fontSize: 20,
+    padding: 10,
   }
 });
