@@ -3,6 +3,7 @@ import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity, Linking } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { Calendar } from './Calendar.js'
 
 const Stack = createStackNavigator();
 
@@ -50,7 +51,9 @@ function EventScreen({ navigation }) {
         <Image style={styles.minilogo} source={require('./images/minibear.png')} />
       </TouchableOpacity>
       <Text style={styles.subheader}>Event Calendar</Text>
-      <Text style={styles.body}>filler</Text>
+      {/* I want to show my Google Calendar here */}
+      <Calendar/>
+      {/* I get an error here (see above for more details on error) */}
     </View>
   )
 }
