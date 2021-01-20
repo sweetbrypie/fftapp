@@ -1,19 +1,21 @@
 import React from 'react';
 
+var gapi = require('gapi');
+
 export default class Calendar extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             events: []
         };
+        this.getEvents = this.getEvents.bind(this)
     }
 
     componentDidMount = () => {
-        getEvents()
+        this.getEvents()
     }
 
     getEvents() {
-        let that = this;
         function start() {
             gapi.client.init({
                 'apiKey': 'AIzaSyDJrpQjRFJRNSH9Z7eihGMettA3lZVofy4'
@@ -23,10 +25,10 @@ export default class Calendar extends React.Component {
                 })
             }).then((response) => {
                 let events = response.result.items
-                that.setState({
+                this.setState({
                     events
                 }, () => {
-                    console.log(that.state.events);
+                    console.log(this.state.events);
                 })
             }, function (reason) {
                 console.log(reason);
@@ -37,13 +39,13 @@ export default class Calendar extends React.Component {
 
     render() {
         return (
-            {
-                this: state.events.map(function (event) {
+            <>{
+                this.state.events.map(function (event) {
                     return (
                         { event: summary }
                     )
                 })
-            }
+            }</>
         )
     }
 }
