@@ -3,7 +3,6 @@ import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity, Linking, ScrollView, SafeAreaView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Calendar from './Calendar.js'
 
 const Stack = createStackNavigator();
 
@@ -14,16 +13,16 @@ function WelcomeScreen({ navigation }) {
       <Text style={styles.header}>Welcome to the {"\n"} Food for Thought App</Text>
       <View style={styles.row}>
         <View style={styles.iconcontainer}>
-          <TouchableOpacity onPress={() => { navigation.navigate('EventScreen') }}>
-            <Image style={styles.icon} source={require('./images/calendar.png')} />
-          </TouchableOpacity>
-          <Text style={styles.icontext}>Event Calendar</Text>
-        </View>
-        <View style={styles.iconcontainer}>
           <TouchableOpacity onPress={() => { navigation.navigate('AnnouncementsScreen') }}>
             <Image style={styles.icon} source={require('./images/announcements.png')} />
           </TouchableOpacity>
           <Text style={styles.icontext}>Announcements</Text>
+        </View>
+        <View style={styles.iconcontainer}>
+          <TouchableOpacity onPress={() => { navigation.navigate('QuickLinksScreen') }}>
+            <Image style={styles.icon} source={require('./images/quicklinks.png')} />
+          </TouchableOpacity>
+          <Text style={styles.icontext}>Quick Links</Text>
         </View>
       </View>
       <View style={styles.row}>
@@ -34,26 +33,27 @@ function WelcomeScreen({ navigation }) {
           <Text style={styles.icontext}>About Us</Text>
         </View>
         <View style={styles.iconcontainer}>
-          <TouchableOpacity onPress={() => { navigation.navigate('QuickLinksScreen') }}>
-            <Image style={styles.icon} source={require('./images/quicklinks.png')} />
+          <TouchableOpacity onPress={() => { navigation.navigate('ContactScreen') }}>
+            <Image style={styles.icon} source={require('./images/contact.png')} />
           </TouchableOpacity>
-          <Text style={styles.icontext}>Quick Links</Text>
+          <Text style={styles.icontext}>Contact Us</Text>
         </View>
       </View>
     </View>
   )
 };
 
-function EventScreen({ navigation }) {
+function ContactScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={() => { navigation.navigate('WelcomeScreen') }}>
         <Image style={styles.minilogo} source={require('./images/minibear.png')} />
       </TouchableOpacity>
-      <Text style={styles.subheader}>Event Calendar</Text>
-      {/* I want to show my Google Calendar here */}
-      <Calendar/>
-      {/* I get an error here (see above for more details on error) */}
+      <Text style={styles.subheader}>Contact Us</Text>
+      <Text style={styles.body}>
+        We are currently working alongside the Basic Needs Center to establish a FFT dedicated space on the UC Berkeley Campus so that students can come in and chat with us at any time.
+        {"\n"}{"\n"}If you have any questions or concerns, please get in contact with us by emailing foodforthought@berkeley.edu
+      </Text>
     </View>
   )
 }
@@ -140,7 +140,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen options={{ headerShown: false }} name="WelcomeScreen" component={WelcomeScreen} />
-        <Stack.Screen options={{ headerShown: false }} name="EventScreen" component={EventScreen} />
+        <Stack.Screen options={{ headerShown: false }} name="ContactScreen" component={ContactScreen} />
         <Stack.Screen options={{ headerShown: false }} name="AnnouncementsScreen" component={AnnouncementsScreen} />
         <Stack.Screen options={{ headerShown: false }} name="AboutUsScreen" component={AboutUsScreen} />
         <Stack.Screen options={{ headerShown: false }} name="QuickLinksScreen" component={QuickLinksScreen} />
@@ -171,6 +171,7 @@ const styles = StyleSheet.create({
   },
   header: {
     color: '#FFFFFF',
+    fontFamily: 'Nunito-Black',
     fontSize: 25,
     fontWeight: '500',
     padding: 30,
@@ -178,6 +179,7 @@ const styles = StyleSheet.create({
   },
   subheader: {
     color: '#FFFFFF',
+    fontFamily: 'Nunito-Black',
     fontSize: 25,
     fontWeight: '500',
     textAlign: 'center',
@@ -198,6 +200,7 @@ const styles = StyleSheet.create({
   },
   icontext: {
     color: '#FFFFFF',
+    fontFamily: 'Nunito-Bold',
     fontSize: 20,
     padding: 10,
     textAlign: 'center',
@@ -209,13 +212,15 @@ const styles = StyleSheet.create({
   },
   body: {
     color: '#FFFFFF',
-    fontSize: 20,
+    fontFamily: 'Nunito-Regular',
+    fontSize: 19,
     textAlign: 'justify',
     padding: 20,
   },
   underline: {
     textDecorationLine: 'underline',
     color: '#FFFFFF',
+    fontFamily: 'Nunito-Bold',
     fontSize: 20,
     padding: 10,
   }
